@@ -4,13 +4,13 @@ import com.microservice.user_service.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient(value = "auth-service" , url = "http://localhost:8085/api/auth")
+// Use service discovery and a consistent base path; avoid hardcoded URLs
+@FeignClient(name = "auth-service", path = "/api/auth")
 public interface AuthInterface {
 
-    @GetMapping("/api/auth/getLoggedInUser")
-    public UserDTO getTheLoggedInUser();
+    @GetMapping("/getLoggedInUser")
+    UserDTO getTheLoggedInUser();
 
-    @GetMapping("/api/auth/getLoggedInUserName")
-    public String getTheLoggedInUserName();
-
+    @GetMapping("/getLoggedInUserName")
+    String getTheLoggedInUserName();
 }
