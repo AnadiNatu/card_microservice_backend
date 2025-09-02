@@ -51,7 +51,12 @@ public class JwtFilter extends OncePerRequestFilter {
                 username = claims.getSubject();
 
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
-                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username , null , Collections.emptyList());
+                    // propagate the raw JWT as credentials so Feign interceptors can forward it
+                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                            username,
+                            jwt,
+                            Collections.emptyList()
+                    );
 
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);

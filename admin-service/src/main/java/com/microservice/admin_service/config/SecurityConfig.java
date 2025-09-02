@@ -1,4 +1,4 @@
-package com.example.adminservice.config;
+package com.microservice.admin_service.config;
 
 
 import com.microservice.admin_service.enums.UserRoles;
