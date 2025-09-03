@@ -34,5 +34,11 @@ build/
 
 
 application.properties
+<<<<<<< HEAD
 application.yml
 /External Libraries
+=======
+
+application.yml
+/External Libraries
+>>>>>>> 32b27daecf991c3c64b9ab5df2bf654065c22a19
